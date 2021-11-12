@@ -14,6 +14,7 @@ class RuCompliant extends Model
         'title',
         'body',
         'pair',
+        'ltfv',
         'created_at',
         'updated_at'
     ];

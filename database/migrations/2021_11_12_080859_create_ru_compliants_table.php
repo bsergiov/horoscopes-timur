@@ -17,8 +17,8 @@ class CreateRuCompliantsTable extends Migration
             $table->id();
             $table->string('title', 155)->nullable();
             $table->text('body')->nullable();
-            $table->string('category', 155)->nullable();
-            $table->string('sign', 155)->nullable();
+            $table->string('pair', 155)->nullable();
+            $table->integer('ltfv')->nullable();
             $table->timestamps();
         });
     }
