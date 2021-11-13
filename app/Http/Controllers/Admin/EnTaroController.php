@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\EnTaro;
 use Illuminate\Http\Request;
 
 class EnTaroController extends Controller
@@ -14,7 +15,10 @@ class EnTaroController extends Controller
      */
     public function index()
     {
-        //
+        $articles = EnTaro::orderBy('created_at', 'desc')->get();
+        return view('en.taro.index', [
+            'articles' => $articles,
+        ]);
     }
 
     /**
@@ -35,7 +39,13 @@ class EnTaroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $new_articl = new EnTaro();
+        $new_articl->title = $request['title'];
+        $new_articl->body = $request['body'];
+        $new_articl->category = $request['category'];
+        $new_articl->sign = $request['sign'];
+        $new_articl->save();
+        return redirect('/entaro');
     }
 
     /**
@@ -57,7 +67,10 @@ class EnTaroController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = EnTaro::find($id);
+        return view('en.taro.edit', [
+            'article' => $article
+        ]);
     }
 
     /**
@@ -69,7 +82,14 @@ class EnTaroController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $article = EnTaro::find($id);
+        $article->title = $request['title'];
+        $article->body = $request['body'];
+        $article->category = $request['category'];
+        $article->sign = $request['sign'];
+        $article->save();
+
+        return redirect('/entaro');
     }
 
     /**
@@ -80,6 +100,8 @@ class EnTaroController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $articl = EnTaro::find($id);
+        $articl->delete();
+        return redirect('/entaro');
     }
 }
