@@ -27,10 +27,10 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="/ru">All</a></li>
-                                <li><a class="dropdown-item" href="/ru/categories">Categories</a></li>
-                                <li><a class="dropdown-item" href="/ru/taro">Taro</a></li>
-                                <li><a class="dropdown-item" href="/ru/paries">Paries</a></li>
-                                <li><a class="dropdown-item" href="/ru/over">Over</a></li>
+                                <li><a class="dropdown-item" href="/rucategories">Categories</a></li>
+                                <li><a class="dropdown-item" href="/rutaro">Taro</a></li>
+                                <li><a class="dropdown-item" href="/ruparies">Paries</a></li>
+                                <li><a class="dropdown-item" href="/ruover">Over</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -39,10 +39,10 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="/en">All</a></li>
-                                <li><a class="dropdown-item" href="en/categories">Categories</a></li>
-                                <li><a class="dropdown-item" href="en/taro">Taro</a></li>
-                                <li><a class="dropdown-item" href="en/paries">Paries</a></li>
-                                <li><a class="dropdown-item" href="en/over">Over</a></li>
+                                <li><a class="dropdown-item" href="encategories">Categories</a></li>
+                                <li><a class="dropdown-item" href="entaro">Taro</a></li>
+                                <li><a class="dropdown-item" href="enparies">Paries</a></li>
+                                <li><a class="dropdown-item" href="enover">Over</a></li>
                             </ul>
                         </li>
                     </ul>

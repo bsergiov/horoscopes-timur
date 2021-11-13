@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\EnShowController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RuShowController;
 
@@ -17,4 +18,6 @@ use App\Http\Controllers\Admin\RuShowController;
 Route::get('/', function () {
     return view('/welcomePage.index');
 });
-Route::resource('/ru', RuShowController::class );
+Route::resource('/ru', RuShowController::class);
+Route::resource('/en', EnShowController::class);
+
