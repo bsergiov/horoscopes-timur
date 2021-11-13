@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\RuArticl;
+use App\Models\EnCategory;
 use Illuminate\Http\Request;
 
-class RuShowController extends Controller
+class EnCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class RuShowController extends Controller
      */
     public function index()
     {
-        $articles = RuArticl::orderBy('created_at', 'desc')->get();
-        return view('ru.index', [
+        $articles = EnCategory::orderBy('created_at', 'desc')->get();
+        return view('en.category.index', [
             'articles' => $articles,
         ]);
     }
@@ -39,12 +39,13 @@ class RuShowController extends Controller
      */
     public function store(Request $request)
     {
-        $new_articl = new RuArticl();
+        $new_articl = new EnCategory();
         $new_articl->title = $request['title'];
         $new_articl->body = $request['body'];
+        $new_articl->category = $request['category'];
         $new_articl->sign = $request['sign'];
         $new_articl->save();
-        return redirect()->route('ru.index');
+        return redirect('/encategories');
     }
 
     /**
@@ -66,8 +67,8 @@ class RuShowController extends Controller
      */
     public function edit($id)
     {
-        $article = RuArticl::find($id);
-        return view('ru.edit', [
+        $article = EnCategory::find($id);
+        return view('en.category.edit', [
             'article' => $article
         ]);
     }
@@ -81,16 +82,14 @@ class RuShowController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $article = RuArticl::find($id);
+        $article = EnCategory::find($id);
         $article->title = $request['title'];
         $article->body = $request['body'];
         $article->category = $request['category'];
         $article->sign = $request['sign'];
         $article->save();
-        $articles = RuArticl::all();
 
-        return redirect('/ru');
-
+        return redirect('/encategories');
     }
 
     /**
@@ -101,9 +100,8 @@ class RuShowController extends Controller
      */
     public function destroy($id)
     {
-        $articl = RuArticl::find($id);
+        $articl = EnCategory::find($id);
         $articl->delete();
-        return redirect()->route('ru.index');
-
+        return redirect('/encategories');
     }
 }

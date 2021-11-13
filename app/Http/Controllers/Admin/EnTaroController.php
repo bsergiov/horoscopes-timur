@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\RuArticl;
 use Illuminate\Http\Request;
 
-class RuShowController extends Controller
+class EnTaroController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,7 @@ class RuShowController extends Controller
      */
     public function index()
     {
-        $articles = RuArticl::orderBy('created_at', 'desc')->get();
-        return view('ru.index', [
-            'articles' => $articles,
-        ]);
+        //
     }
 
     /**
@@ -39,12 +35,7 @@ class RuShowController extends Controller
      */
     public function store(Request $request)
     {
-        $new_articl = new RuArticl();
-        $new_articl->title = $request['title'];
-        $new_articl->body = $request['body'];
-        $new_articl->sign = $request['sign'];
-        $new_articl->save();
-        return redirect()->route('ru.index');
+        //
     }
 
     /**
@@ -66,10 +57,7 @@ class RuShowController extends Controller
      */
     public function edit($id)
     {
-        $article = RuArticl::find($id);
-        return view('ru.edit', [
-            'article' => $article
-        ]);
+        //
     }
 
     /**
@@ -81,16 +69,7 @@ class RuShowController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $article = RuArticl::find($id);
-        $article->title = $request['title'];
-        $article->body = $request['body'];
-        $article->category = $request['category'];
-        $article->sign = $request['sign'];
-        $article->save();
-        $articles = RuArticl::all();
-
-        return redirect('/ru');
-
+        //
     }
 
     /**
@@ -101,9 +80,6 @@ class RuShowController extends Controller
      */
     public function destroy($id)
     {
-        $articl = RuArticl::find($id);
-        $articl->delete();
-        return redirect()->route('ru.index');
-
+        //
     }
 }

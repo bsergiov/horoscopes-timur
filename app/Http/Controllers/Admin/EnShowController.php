@@ -15,7 +15,7 @@ class EnShowController extends Controller
      */
     public function index()
     {
-        $articles = EnArticl::all();
+        $articles = EnArticl::orderBy('created_at', 'desc')->get();
         return view('en.index', [
             'articles' => $articles,
         ]);
