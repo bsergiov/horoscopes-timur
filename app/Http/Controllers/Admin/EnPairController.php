@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\EnCompliant;
 use Illuminate\Http\Request;
 
 class EnPairController extends Controller
@@ -14,7 +15,10 @@ class EnPairController extends Controller
      */
     public function index()
     {
-        //
+        $articles = EnCompliant::orderBy('created_at', 'desc')->get();
+        return view('en.pair.index', [
+            'articles' => $articles,
+        ]);
     }
 
     /**
@@ -35,7 +39,13 @@ class EnPairController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $new_articl = new EnCompliant();
+        $new_articl->title = $request['title'];
+        $new_articl->body = $request['body'];
+        $new_articl->pair = $request['pair'];
+        $new_articl->ltfv = $request['ltfv'];
+        $new_articl->save();
+        return redirect('/enparies');
     }
 
     /**
@@ -57,7 +67,10 @@ class EnPairController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = EnCompliant::find($id);
+        return view('en.pair.edit', [
+            'article' => $article
+        ]);
     }
 
     /**
@@ -69,7 +82,14 @@ class EnPairController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $article = EnCompliant::find($id);
+        $article->title = $request['title'];
+        $article->body = $request['body'];
+        $article->pair = $request['pair'];
+        $article->ltfv = $request['ltfv'];
+        $article->save();
+
+        return redirect('/enparies');
     }
 
     /**
@@ -80,6 +100,8 @@ class EnPairController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $articl = EnCompliant::find($id);
+        $articl->delete();
+        return redirect('/enparies');
     }
 }
