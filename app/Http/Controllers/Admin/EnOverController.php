@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\EnOverAllArticl;
 use Illuminate\Http\Request;
 
 class EnOverController extends Controller
@@ -14,7 +15,10 @@ class EnOverController extends Controller
      */
     public function index()
     {
-        //
+        $articles = EnOverAllArticl::orderBy('created_at', 'desc')->get();
+        return view('en.over.index', [
+            'articles' => $articles,
+        ]);
     }
 
     /**
@@ -35,7 +39,12 @@ class EnOverController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $new_articl = new EnOverAllArticl();
+        $new_articl->title = $request['title'];
+        $new_articl->body = $request['body'];
+        $new_articl->sign = $request['sign'];
+        $new_articl->save();
+        return redirect()->route('enover.index');
     }
 
     /**
@@ -57,7 +66,10 @@ class EnOverController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = EnOverAllArticl::find($id);
+        return view('en.over.edit', [
+            'article' => $article
+        ]);
     }
 
     /**
@@ -69,7 +81,14 @@ class EnOverController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $article = EnOverAllArticl::find($id);
+        $article->title = $request['title'];
+        $article->body = $request['body'];
+        $article->category = $request['category'];
+        $article->sign = $request['sign'];
+        $article->save();
+
+        return redirect('/enover');
     }
 
     /**
@@ -80,6 +99,8 @@ class EnOverController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $articl = EnOverAllArticl::find($id);
+        $articl->delete();
+        return redirect()->route('enover.index');
     }
 }

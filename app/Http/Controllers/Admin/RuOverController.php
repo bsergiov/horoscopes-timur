@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\RuOverAllArticl;
 use Illuminate\Http\Request;
 
 class RuOverController extends Controller
@@ -14,7 +15,10 @@ class RuOverController extends Controller
      */
     public function index()
     {
-        //
+        $articles = RuOverAllArticl::orderBy('created_at', 'desc')->get();
+        return view('ru.over.index', [
+            'articles' => $articles,
+        ]);
     }
 
     /**
@@ -35,7 +39,12 @@ class RuOverController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $new_articl = new RuOverAllArticl();
+        $new_articl->title = $request['title'];
+        $new_articl->body = $request['body'];
+        $new_articl->sign = $request['sign'];
+        $new_articl->save();
+        return redirect()->route('ruover.index');
     }
 
     /**
@@ -57,7 +66,10 @@ class RuOverController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = RuOverAllArticl::find($id);
+        return view('ru.over.edit', [
+            'article' => $article
+        ]);
     }
 
     /**
@@ -69,7 +81,15 @@ class RuOverController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $article = RuOverAllArticl::find($id);
+        $article->title = $request['title'];
+        $article->body = $request['body'];
+        $article->category = $request['category'];
+        $article->sign = $request['sign'];
+        $article->save();
+        $articles = RuOverAllArticl::all();
+
+        return redirect('/ruover');
     }
 
     /**
@@ -80,6 +100,8 @@ class RuOverController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $articl = RuOverAllArticl::find($id);
+        $articl->delete();
+        return redirect()->route('ruover.index');
     }
 }

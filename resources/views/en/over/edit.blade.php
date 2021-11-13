@@ -4,9 +4,9 @@
     @parent
 @stop
 @section('content')
-    <h2>RU over Edit</h2>
+    <h2>EN over Edit</h2>
     <h5>ID {{$article['id'] ?? 0}}</h5>
-    <form action="{{route('ruover.update', $article['id'])}}" method="POST">
+    <form action="{{route('enover.update', $article['id'])}}" method="POST">
         @csrf
         @method('PUT')
         <div class="mb-1">
